@@ -1,41 +1,36 @@
 package lqa.testNgDemo;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest
-//    extends TestCase
-{
-//    /**
-//     * Create the test case
-//     *
-//     * @param testName name of the test case
-//     */
-//    public AppTest( String testName )
-//    {
-//        super( testName );
-//    }
-//
-//    /**
-//     * @return the suite of tests being tested
-//     */
-//    public static Test suite()
-//    {
-//        return new TestSuite( AppTest.class );
-//    }
-//
-//    /**
-//     * Rigourous Test :-)
-//     */
-//    public void testApp()
-//    {
-//        assertTrue( true );
-//    }
+public class AppTest {
+	String driverPath;
+	String baseUrl;
+	String expectedTitle;
+
+	@BeforeClass
+	public void prepareData() {
+		driverPath = "C:/Users/LY/Downloads/" + "chromedriver.exe";
+		baseUrl = "http://demo.guru99.com/test/newtours/";
+		expectedTitle = "Welcome: Mercury Tours";
+	}
+
 	@Test
 	public void verifyTrue() {
-		Assert.assertTrue(true);
+
+		System.setProperty("webdriver.chrome.driver", driverPath);
+		WebDriver driver = new ChromeDriver();
+		String actualTitle = "";
+		driver.get(baseUrl);
+		actualTitle = driver.getTitle();
+		driver.close();
+		Assert.assertTrue(actualTitle.contentEquals(expectedTitle));
+
 	}
 }
