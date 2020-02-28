@@ -36,6 +36,7 @@ public class AppTest
 //    }
 	@Test
 	public void verifyTrue() {
+		System.out.println("we are friends");
 		Assert.assertTrue(true);
 	}
 }
